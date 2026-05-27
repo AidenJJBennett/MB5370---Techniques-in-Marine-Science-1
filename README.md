@@ -1,1 +1,0 @@
-The Rmd file contains my code during the duration of the computer workshops of Module 1, acting as my reintroduction to R and RStudio, and my first introduction to Git and AI integration directly into R.

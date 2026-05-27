@@ -1,16 +1,14 @@
 ---
-output:
-  word_document: default
+title: "MB5370 - Introduction to Programming"
+author: "Aiden Bennett"
+date: "2026-05-20"
 ---
-MB5370 - Introduction of Programming
-Aiden Bennett
-May 2026
-
-Directory:
-C:/Documents/Masters Docs General/MB5370 - Techniques in Marine Science 1/Module_1.Rmd
 
 --- Introduction ---
 This document contains my workings through the first module of MB5370, with annotations explaining the functions and what some outputs represent.
+
+--- Directory ---
+C:/Documents/Masters Docs General/MB5370 - Techniques in Marine Science 1/Module_1.Rmd
 
 --- Workshop 01 - Introduction ---
 This workshop is the first introduction to coding and goes over the basic functions of R and how different types of data can be stored and utilized.
@@ -344,5 +342,4 @@ ggplot(data = <DATA>) +
   <FACET_FUNCTION>
   
 The location of each important factor in a ggplot, and can be used as a base template for most plotting. When multiple variables are being used then it will need to be adjusted but this is good enough for most basic requirements of ggplot.
-
 

@@ -1,7 +1,7 @@
 ---
 title: "Workshop 4"
 author: "Aiden Bennett"
-date: "2026-05-27"
+date: "2026-05-28"
 ---
 
 --- Workshop 04 - Developers Toolbox and AI ---

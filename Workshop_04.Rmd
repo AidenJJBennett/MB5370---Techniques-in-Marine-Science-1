@@ -197,4 +197,4 @@ convert_temp_c_to_f(40) # Returns 104
 convert_temp_c_to_f(-300) # Returns NA
 ```
 
-AI integration and logic can help to simplify R fuctions and allow for more accessability to complex coding.
+AI integration and logic can help to simplify R functions and allow for more accessibility to complex coding.

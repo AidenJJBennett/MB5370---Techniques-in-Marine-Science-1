@@ -1,0 +1,215 @@
+---
+title: "Workshop 2"
+author: "Aiden Bennett"
+date: "2026-05-21"
+---
+
+--- Workshop 02 - Visualization ---
+The second workshop introduces plotting using the ggplot2 package from tidyverse, going over types of plots and the different ways that they can be customized using embedded functions.
+
+-- Load packages --
+```{r message=FALSE, warning=FALSE}
+# Loads ggplot2 at same time
+library(tidyverse)
+```
+
+-- Plotting practice with ggplot2 --
+```{r message=FALSE, warning=FALSE}
+# ggplot2 is a great package for making more complex charts and removes redundancy that the base version of R plotting usually has
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) # A simple dot chart
+
+# Changing point colour
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = class)) # Sets the colours based on the variable class
+
+# Changing point size
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, size = class)) # Changes size as above with the class variable
+
+# Changing point transparency
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, alpha = class)) # Gives each class its own transparency level
+
+# Changing point shape
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class)) # Assign's each class its own shape
+
+# Manually set colour
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue") # Manually makes all dots blue
+```
+
+-- Facet and panel plots --
+```{r message=FALSE, warning=FALSE}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class, nrow = 2)
+# This function gives each subplot its own panel to separate the values of class from one another
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_grid(drv ~ cyl)
+#This function instead combines the variables of drv and cyl together using an ~ to show relation between the variables
+
+?facet_wrap # nrow defines the number of rows, ncol defines the number of columns. Scales and space define limits on the layout and ensure that each panel is equal and proportional
+```
+
+-- Fitting simple lines --
+```{r message=FALSE, warning=FALSE}
+# Using geom_point
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+# geom_point only maps dot points, and often requires additional adjustments of aesthetics or graph styles to be readable
+
+# Using geom_smooth
+ggplot(data = mpg) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy))
+# geom_smooth only makes a line, and like geom_point will need more adjustments. It does however have an area around it that shows where points are more or less concentrated 
+
+# Changing the line style
+ggplot(data = mpg) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv))
+# This plot has three different types of lines based on values of drv, which can help distinguish what trend each line is representing
+
+#Set group aesthetic
+ggplot(data = mpg) +
+  geom_smooth(mapping = aes(x = displ, y = hwy, group = drv))
+# This plot resets the lines from above and instead just draws the three lines
+
+# Change group colour
+ggplot(data = mpg) +
+  geom_smooth(
+    mapping = aes(x = displ, y = hwy, color = drv),
+    show.legend = FALSE,
+  )
+# Using color it sets each line to a unique color based on the values of a specified variable, in this case it is still drv
+
+# Points and lines together
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy))
+# Going back to one line, we combine the line and dot charts into one plot together and visualize the relationship between them
+
+# Same but simpler
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  geom_smooth()
+# This produces the same plot as the previous but does not repeat the aes code in the geom functions
+
+# Style points
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth()
+# Only changes the style of the points, in this case changing their colour
+
+# Subset data during plotting
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth(data = filter(mpg, class == "subcompact"), se = FALSE)
+# Filter sets the data into specified categories then only plots the specified subset
+```
+
+--- Exercise ---
+1. For a line chart use geom_line, geom_boxplot for a boxplot, geom_histogram for a histogram, and geom_area for an area chart. These will be the simplest options and can be easily modified.
+
+2. These plots will show a dot chart with a best-fit line going through, evidenced by geom_point and geom_smooth. They will look the same as the mapping sections are the same in both plots, only placed in different locations within the code.
+```{r message=FALSE, warning=FALSE}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  geom_smooth()
+
+ggplot() + 
+  geom_point(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_smooth(data = mpg, mapping = aes(x = displ, y = hwy))
+```
+
+-- Plotting Statistics --
+```{r message=FALSE, warning=FALSE}
+# Plots from diamonds data set in ggplot
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut)) # Makes a bar chart
+
+# Changing defaults in ggplot2
+demo <- tribble(
+  ~cut,         ~freq,
+  "Fair",       1610,
+  "Good",       4906,
+  "Very Good",  12082,
+  "Premium",    13791,
+  "Ideal",      21551
+)
+demo
+
+ggplot(data = demo) +
+  geom_bar(mapping = aes(x = cut, y = freq), stat = "identity")
+# This adjusts the default statistic (count) to the raw value of the variable
+
+# Alternative to overridding defaults
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = stat(prop), group = 1))
+# This plot specifically moves the values to a proportional graph
+
+# Stat summary
+ggplot(data = diamonds) + 
+  stat_summary(
+    mapping = aes(x = cut, y = depth),
+    fun.min = min,
+    fun.max = max,
+    fun = median
+  )
+# stat_summary can visualize transformations of the data
+```
+
+-- Aesthetic adjustments --
+```{r message=FALSE, warning=FALSE}
+# Color and fill
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, colour = cut)) 
+# Colors the outline
+
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = cut))
+# Colors the inside of the bar
+
+# Clarity
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity))
+# Makes subsections in the bar that are colored by the variable clarity, a form of a subset
+
+# Alter transparency
+ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) + 
+  geom_bar(alpha = 1/5, position = "identity")
+# Transparency is another way to show subsets in the bars
+
+# Color outlines w/o fill
+ggplot(data = diamonds, mapping = aes(x = cut, colour = clarity)) + 
+  geom_bar(fill = NA, position = "identity")
+# Removes the fill of all of the bars and colors their outlines
+
+# Fill
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "fill")
+# Using this function it makes all of the bars the same height while still coloring them
+
+# Dodge
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
+# Dodge positions the overlapping values next to each other instead of on top
+
+# Jitter
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), position = "jitter")
+# Jitter is only usable in dot plots and adds randomization to the points to stop them from being combined in the plots
+```
+
+-- Layered grammar of plotting --
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(
+     mapping = aes(<MAPPINGS>),
+     stat = <STAT>, 
+     position = <POSITION>
+  ) +
+  <FACET_FUNCTION>
+  
+The location of each important factor in a ggplot, and can be used as a base template for most plotting. When multiple variables are being used then it will need to be adjusted but this is good enough for most basic requirements of ggplot.

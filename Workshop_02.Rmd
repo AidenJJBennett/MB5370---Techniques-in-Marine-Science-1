@@ -51,8 +51,9 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_grid(drv ~ cyl)
 #This function instead combines the variables of drv and cyl together using an ~ to show relation between the variables
+```
 
-?facet_wrap # nrow defines the number of rows, ncol defines the number of columns. Scales and space define limits on the layout and ensure that each panel is equal and proportional
+facet_wrap - nrow defines the number of rows, ncol defines the number of columns. Scales and space define limits on the layout and ensure that each panel is equal and proportional
 ```
 
 -- Fitting simple lines --

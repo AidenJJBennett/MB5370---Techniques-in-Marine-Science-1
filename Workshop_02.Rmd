@@ -54,7 +54,6 @@ ggplot(data = mpg) +
 ```
 
 facet_wrap - nrow defines the number of rows, ncol defines the number of columns. Scales and space define limits on the layout and ensure that each panel is equal and proportional
-```
 
 -- Fitting simple lines --
 ```{r message=FALSE, warning=FALSE}

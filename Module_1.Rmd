@@ -342,4 +342,3 @@ ggplot(data = <DATA>) +
   <FACET_FUNCTION>
   
 The location of each important factor in a ggplot, and can be used as a base template for most plotting. When multiple variables are being used then it will need to be adjusted but this is good enough for most basic requirements of ggplot.
-

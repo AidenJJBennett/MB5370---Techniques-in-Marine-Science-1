@@ -1,0 +1,200 @@
+---
+title: "Workshop 4"
+author: "Aiden Bennett"
+date: "2026-05-27"
+---
+
+--- Workshop 04 - Developers Toolbox and AI ---
+
+Today's workshop focuses on AI integration into R and setting up GitHub Copilot and chattr.
+
+-- Installing and loading chattr --
+```{r}
+install.packages("ellmer")
+install.packages("chattr")
+```
+
+An API key is also required to run these programs, I chose to use Google Gemini via Google AI Studio. Once I had the key, I needed to store the key in R using the usethis package. It is stored in the .Renviron file and was connected to chattr through the .Rprofile.
+
+After each file was loaded R needed to be restarted.
+
+I mapped the chattr app to the Alt+Shift+G key bind to make opening the program easier and asked it some simple questions to ensure it was working as intended. 
+
+I asked it how to load the built-in data set cars and create a ggplot using some of its variables. This was the outputted code.
+```{r}
+library(ggplot2)
+
+data(cars)
+
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point()
+```
+
+-- Conditional Logic in R --
+
+An example of an if/else loop in basic R
+```{r}
+sst <- 30.2
+if (sst > 29.5) {
+  print("Warning: Marine heatwave threshold exceeded!")
+} else {
+  print("SST remains within baseline parameters.")
+}
+```
+
+This code would output one message based on the value of SST after checking its value against both potential outputs.
+
+An alternative using tidyverse exists that can combine the functions into one.
+```{r}
+library(tidyverse)
+
+#Example of coral data
+coral_monitoring <- tibble(
+    site = c("Site_A", "Site_B", "Site_C"),
+    depth_m = c(12, 35, 8)
+)
+
+# Creating the if_else
+coral_monitoring <- coral_monitoring %>%
+  mutate(zone = if_else(depth_m > 30, "Deep Reef", "Shallow Reef"))
+```
+
+This code instead creates a new output, coral_monitoring, that then gets updated using the mutate function to add a new column zone that then has its values updated using the if_else function.
+
+If you have more than 2 options then a case_when function can also be used.
+```{r}
+coral_monitoring <- coral_monitoring %>% 
+  mutate(reef_category = case_when(
+    depth_m < 10  ~ "Lagoon / Flats",
+    depth_m <= 30 ~ "Crest / Slope",
+    depth_m > 30  ~ "Mesophotic / Deep",
+    TRUE          ~ "Unclassified" # Catch-all remainder
+  ))
+```
+
+I used the chattr app to make a new section of code with set salinity values and a mutate/case_when function to combine them into a new data chart. Below is the output.
+```{r}
+library(dplyr)
+library(tibble)
+
+marine_stations <- tibble(
+  salinity = c(35, 28, 32, 12)
+) %>%
+  mutate(
+    environment_type = case_when(
+      salinity < 15 ~ "Estuarine",
+      salinity >= 15 & salinity <= 30 ~ "Brackish",
+      salinity > 30 ~ "Marine"
+    )
+  )
+```
+
+The AI made the whole code in one section, which further simplified the provided examples.
+
+-- Automation --
+
+Base R can create for-loops
+```{r}
+for (year in 2020:2024) {
+  print(paste("Processing climate data for year:", year))
+}
+```
+
+R can also make loops using index sequences
+```{r}
+transect_lengths <- c(50, 100, 25, 75)
+
+for (i in seq_along(transect_lengths)) {
+  print(paste("Transect number", i, "measures", transect_lengths[i], "metres."))
+}
+```
+
+Tidyverse once again can be used to make useful functions, in this case map functions using the purrr package
+
+map () - returns a flexible list structure
+map_dbl() - returns a vector of decimals/numeric values
+map_chr() - returns a vector of text strings/characters
+map_df() - returns a combined data frame/tibble
+
+A standard for loop and the purrr equivalent
+```{r}
+site_areas <- c(144, 400, 625)
+results <- numeric(length(site_areas)) # Must build an empty container first
+
+for(i in seq_along(site_areas)) {
+  results[i] <- sqrt(site_areas[i])
+}
+
+library(purrr)
+# Map directly and define your expected output type explicitly
+mapped_results <- map_dbl(site_areas, sqrt)
+```
+
+Both sections will output the same results
+
+With chattr, I used this prompt. "I have a list of three vectors containing fish count data. Write a for-loop to calculate the mean of each, and then show me the exact parallel way to do it using purrr's map_dbl function.
+```{r}
+library(purrr)
+
+fish_counts <- list(
+  river_a = c(10, 12, 8, 15, 11),
+  river_b = c(20, 18, 22, 19),
+  river_c = c(5, 7, 6)
+)
+
+# For-loop
+mean_counts_for_loop <- numeric(length(fish_counts))
+names(mean_counts_for_loop) <- names(fish_counts)
+
+for (i in seq_along(fish_counts)) {
+  mean_counts_for_loop[i] <- mean(fish_counts[[i]])
+}
+
+mean_counts_for_loop
+
+# purrr::map_dbl
+mean_counts_purrr <- map_dbl(fish_counts, mean)
+
+mean_counts_purrr
+```
+
+-- Creating Custom Functions --
+When creating custom functions, it requires a Name, Arguments/Inputs, and a Body/Logic
+
+Here is a provided example of a function
+```{r}
+# Function Definition
+calculate_coral_mortality <- function(initial_count, surviving_count) {
+  
+  # Logic safety switch using our conditional tools!
+  if (initial_count <= 0) {
+    stop("Initial count must be greater than zero.")
+  }
+  
+  mortality_rate <- (initial_count - surviving_count) / initial_count
+  return(mortality_rate)
+}
+
+# Utilizing your custom function
+calculate_coral_mortality(initial_count = 120, surviving_count = 84) #Result is 0.3
+```
+
+I needed to create a custom function called convert_temp_c_to_f that accepts one argument as temp in Celsius. It needs to perform the conversion and a safety check using an if argument to check if value is below absolute zero (-273.15 degrees C).
+```{r}
+convert_temp_c_to_f <- 
+  function(temp_c) {
+    if (temp_c < -273.15) {
+      message("Input temperature is below absolute zero")
+      return(NA_real_)
+    } else {
+      temp_f <- (temp_c * 9/5) + 32
+      return(temp_f)
+    }
+  }
+
+#Tests to see if function works
+convert_temp_c_to_f(40) # Returns 104
+convert_temp_c_to_f(-300) # Returns NA
+```
+
+AI integration and logic can help to simplify R fuctions and allow for more accessability to complex coding.

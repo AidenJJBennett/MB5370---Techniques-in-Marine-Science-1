@@ -8,6 +8,53 @@ date: "2026-05-28"
 
 Today's workshop focuses on AI integration into R and setting up GitHub Copilot and chattr.
 
+-- GitHub Copilot --
+
+To properly install, go to Tools -> Global Options -> Assistant -> Change Use Code Assistant to GitHub Copilot. It will request your log in then connect automatically to GitHub. 
+
+Below is my attempt to have Copilot write a section of code based on an exercise from Workshop 2. Comments were provided from the Workshop workbook and all code was not edited by myself after being written by Copilot.
+
+```{r}
+# Load tidyverse and palmerpenguins libraries
+library(tidyverse)
+library(palmerpenguins)
+
+# Create a ggplot scatter plot using the penguins dataset. 
+# Plot bill_length_mm on the x-axis and bill_depth_mm on the y-axis.
+# Color points by species and use geom_point with size 3.
+# Add a minimal theme and clean labels.
+
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point(size = 3) +
+  theme_minimal() +
+  labs(title = "Penguin Bill Dimensions",
+       x = "Bill Length (mm)",
+       y = "Bill Depth (mm)",
+       color = "Species")
+```
+
+This section are my own instructions to fulfill Option B - To generate a scatter plot mapping body_mass_g against flipper_length_mm, adding a linear regression trend line (geom_smooth) for each species.
+
+```{r}
+# Load tidyverse and palmerpenguins libraries
+library(tidyverse)
+library(palmerpenguins)
+
+# Create a ggplot scatter plot using the penguins data set.
+# Plot body_mass_g on the x-axis and flipper_length_mm on the y-axis.
+# Color points by species and use geom_point with size 2.
+# Add a linear regression trend line for each species.
+
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = species)) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  labs(title = "Penguin Body Mass vs Flipper Length",
+       x = "Body Mass (g)",
+       y = "Flipper Length (mm)",
+       color = "Species")
+```
+
 -- Installing and loading chattr --
 
 install.packages("ellmer")

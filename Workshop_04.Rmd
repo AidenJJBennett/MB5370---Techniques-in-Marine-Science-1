@@ -9,10 +9,9 @@ date: "2026-05-28"
 Today's workshop focuses on AI integration into R and setting up GitHub Copilot and chattr.
 
 -- Installing and loading chattr --
-```{r}
+
 install.packages("ellmer")
 install.packages("chattr")
-```
 
 An API key is also required to run these programs, I chose to use Google Gemini via Google AI Studio. Once I had the key, I needed to store the key in R using the usethis package. It is stored in the .Renviron file and was connected to chattr through the .Rprofile.
 

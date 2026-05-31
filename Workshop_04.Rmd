@@ -14,7 +14,7 @@ To properly install, go to Tools -> Global Options -> Assistant -> Change Use Co
 
 Below is my attempt to have Copilot write a section of code based on an exercise from Workshop 2. Comments were provided from the Workshop workbook and all code was not edited by myself after being written by Copilot.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 # Load tidyverse and palmerpenguins libraries
 library(tidyverse)
 library(palmerpenguins)
@@ -35,7 +35,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
 
 This section are my own instructions to fulfill Option B - To generate a scatter plot mapping body_mass_g against flipper_length_mm, adding a linear regression trend line (geom_smooth) for each species.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 # Load tidyverse and palmerpenguins libraries
 library(tidyverse)
 library(palmerpenguins)
@@ -67,7 +67,7 @@ After each file was loaded R needed to be restarted.
 I mapped the chattr app to the Alt+Shift+G key bind to make opening the program easier and asked it some simple questions to ensure it was working as intended. 
 
 I asked it how to load the built-in data set cars and create a ggplot using some of its variables. This was the outputted code.
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(ggplot2)
 
 data(cars)
@@ -79,7 +79,7 @@ ggplot(cars, aes(x = speed, y = dist)) +
 -- Conditional Logic in R --
 
 An example of an if/else loop in basic R
-```{r}
+```{r message=FALSE, warning=FALSE}
 sst <- 30.2
 if (sst > 29.5) {
   print("Warning: Marine heatwave threshold exceeded!")
@@ -91,7 +91,7 @@ if (sst > 29.5) {
 This code would output one message based on the value of SST after checking its value against both potential outputs.
 
 An alternative using tidyverse exists that can combine the functions into one.
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 
 #Example of coral data
@@ -108,7 +108,7 @@ coral_monitoring <- coral_monitoring %>%
 This code instead creates a new output, coral_monitoring, that then gets updated using the mutate function to add a new column zone that then has its values updated using the if_else function.
 
 If you have more than 2 options then a case_when function can also be used.
-```{r}
+```{r message=FALSE, warning=FALSE}
 coral_monitoring <- coral_monitoring %>% 
   mutate(reef_category = case_when(
     depth_m < 10  ~ "Lagoon / Flats",
@@ -119,7 +119,7 @@ coral_monitoring <- coral_monitoring %>%
 ```
 
 I used the chattr app to make a new section of code with set salinity values and a mutate/case_when function to combine them into a new data chart. Below is the output.
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(dplyr)
 library(tibble)
 
@@ -140,7 +140,7 @@ The AI made the whole code in one section, which further simplified the provided
 -- Automation --
 
 Base R can create for-loops
-```{r}
+```{r message=FALSE, warning=FALSE}
 for (year in 2020:2024) {
   print(paste("Processing climate data for year:", year))
 }
@@ -163,7 +163,7 @@ map_chr() - returns a vector of text strings/characters
 map_df() - returns a combined data frame/tibble
 
 A standard for loop and the purrr equivalent
-```{r}
+```{r message=FALSE, warning=FALSE}
 site_areas <- c(144, 400, 625)
 results <- numeric(length(site_areas)) # Must build an empty container first
 
@@ -179,7 +179,7 @@ mapped_results <- map_dbl(site_areas, sqrt)
 Both sections will output the same results
 
 With chattr, I used this prompt. "I have a list of three vectors containing fish count data. Write a for-loop to calculate the mean of each, and then show me the exact parallel way to do it using purrr's map_dbl function.
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(purrr)
 
 fish_counts <- list(
@@ -208,7 +208,7 @@ mean_counts_purrr
 When creating custom functions, it requires a Name, Arguments/Inputs, and a Body/Logic
 
 Here is a provided example of a function
-```{r}
+```{r message=FALSE, warning=FALSE}
 # Function Definition
 calculate_coral_mortality <- function(initial_count, surviving_count) {
   
@@ -226,7 +226,7 @@ calculate_coral_mortality(initial_count = 120, surviving_count = 84) #Result is 
 ```
 
 I needed to create a custom function called convert_temp_c_to_f that accepts one argument as temp in Celsius. It needs to perform the conversion and a safety check using an if argument to check if value is below absolute zero (-273.15 degrees C).
-```{r}
+```{r message=FALSE, warning=FALSE}
 convert_temp_c_to_f <- 
   function(temp_c) {
     if (temp_c < -273.15) {

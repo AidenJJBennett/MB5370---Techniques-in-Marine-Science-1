@@ -1,0 +1,52 @@
+---
+title: "Workshop 3"
+author: "Aiden Bennett"
+date: "2026-05-26"
+---
+
+--- Workshop 03 - Reproducible Research ---
+This workshop has minimal coding, instead it is a guide of the steps I took to install Git and some of the functionality I personally appreciate.
+
+-- Git --
+Using a program like Git makes coding easier to streamline and keep track of any changes that have been done to your code. It is especially useful when using a public database or when developing open source programs.
+
+After setting up a GitHub account, the usethis package is required for connecting to R. Almost all of the work for installing Git is done in the console or terminal of R. Each OS is different, I personally use Windows so I will only share the steps necessary Windows devices.
+
+After Git is installed there are a few steps that need to be taken to ensure it is connected to your device.
+
+Step 1 - Terminal Setup
+Go to the terminal setting through Tools and ensure that all new terminals open through GitBash. Other terminals will not recognize git commands.
+
+Step 1.5 - Ensure Git is Updated
+Use 'which git' and 'git --version' to check that Git is both loaded and the correct version before continuing.
+
+Step 2 - Introduce Yourself
+The below lines need to be inputted into the same console with your proper name and email so that Git recognizes you for future projects.
+'git config --global user.name "Jane Doe"'
+'git config --global user.email "jane@example.com"'
+'git config --global --list'
+
+Step 3 - Designate your Desired Editor and Initial Branch
+These functions name your preferred Git editor and name your main branch for your repository. You can change them at any time, for now these will use the emacs editor and set your default branch as main.
+'git config --global core.editor "emacs"'
+'git config --global init.defaultBranch main'
+
+Step 4 - Enjoy! Git is Now Ready to Go!
+
+
+-- Connecting to GitHub --
+GitHub also requires a Personal Access Token (PAT), which you can get directly from the GitHub website. The first time you try to use Git in R it should ask for a PAT which you can directly copy in. Make sure to save it otherwise you will need to generate a new one!
+
+There are several ways to create a new repository in R, but the easiest option is to input 'usethis::use_git() directly to the console in R. This will track your R project in a GitHub repository that can both upload and download information and files between it and your device. A new Git tab will also open in your project where you can choose to upload specific files that are saved within the specified project.
+
+Git shows several potential statuses of your project files depending on how they appear in their corresponding repository. Either 'A' for Added, 'D' for deleted, 'M' for modified, 'R' for renamed, and the most common will be '?' for untracked.
+
+To commit a file and then push it to GitHub, it first needs to be staged by selecting the desired files. Once all files are selected press the button with the check mark on it or use the default shortcut 'Ctrl+Alt+M'. This pulls up a tab that shows all of the additions to the file coloured green and any deletions since the last commit coloured red. You must add a commit message before committing the file, and it is useful to give yourself a reminder or summary of what was changed.
+
+Once the files are committed and if this is the first time the repository is being committed then you need to input 'usethis::use_github()' into the console to connect them. Then select the green up arrow in the Git tab to push the repository to GitHub. It is important to remember to push your repository every time you commit a file to ensure that both your personal device and GitHub profile are the same.
+
+The typical workflow for using Git with R should be Edit -> Save -> Stage -> Commit -> Pull -> Push. Doing this after you save a file is the best way to keep GitHub up to data and make sure you don't lose progress on any projects.
+
+One final step is to add a README.md file to your repository, to guide viewers of your repository towards important files or folders and give an overview of what your repository contains. Make sure to constantly update this message as your repository evolves. Just like with changes in R however, ensure you pull the file from your repository onto your device, just as how you push files from your device to GitHub.
+
+Congratulations, you should now have a fully functioning GitHub account that is linked to your RStudio and a new repository where you can begin whatever project you want to work on next!

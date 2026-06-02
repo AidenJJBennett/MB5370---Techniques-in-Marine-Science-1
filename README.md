@@ -1,1 +1,1 @@
-A collection of all of my work during MB5370, with annotated code documents explaining my workflow and understanding of the material. Each module is contained within its own folder, with a seperate file that relates to each workshop.
+A collection of all of my work during Module 1 of MB5370, with annotated code documents explaining my workflow and understanding of the material. Each module is contained within its own folder, with a seperate file that relates to each workshop.

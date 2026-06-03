@@ -4,23 +4,23 @@ author: "Aiden Bennett"
 date: "2026-05-20"
 ---
 
---- Introduction ---
+### --- Introduction ---
 This document contains my workings through the first module of MB5370, with annotations explaining the functions and what some outputs represent.
 
---- Directory ---
+### --- Directory ---
 C:/Documents/Masters Docs General/MB5370 - Techniques in Marine Science 1/Module_1.Rmd
 
---- Workshop 01 - Introduction ---
+### --- Workshop 01 - Introduction ---
 This workshop is the first introduction to coding and goes over the basic functions of R and how different types of data can be stored and utilized.
 
--- Getting Started --
+### -- Getting Started --
 ```{r message=FALSE, warning=FALSE}
 2 + 1 # Addition
 1:30 # A list from 1 to 30
 6 * 2 # Multiplication
 ```
 
--- Variables and Assignment --
+### -- Variables and Assignment --
 ```{r message=FALSE, warning=FALSE}
 age <- 25 # Creating a variable and setting its value manually
 first_name <- 'Bill'
@@ -35,7 +35,7 @@ num <- 30.41
 sum + num # 90.76
 ```
 
--- Functions --
+### -- Functions --
 ```{r message=FALSE, warning=FALSE}
 
 # Rounding up and down to the whole number
@@ -53,7 +53,7 @@ my_age <- '26 years old'
 paste(name, my_age, sep = " is ", collapse = NULL, recycle0 = FALSE) # Will combine the two and put is in between
 ```
 
--- Misconceptions --
+### -- Misconceptions --
 ```{r message=FALSE, warning=FALSE}
 
 # When adjusting values it is important to know the load order of the functions
@@ -84,7 +84,7 @@ str(my_quiz)
 length(my_quiz) #should be length, not len
 ```
 
--- Data Types --
+### -- Data Types --
 ```{r message=FALSE, warning=FALSE}
 # Every variable has its own data type, important for later funcitons that can only use certain types of data
 number <- 17
@@ -98,7 +98,7 @@ class(log) # Logical
 #Data can also be changed using as.numeric/as.character etc.
 ```
 
--- Data Structures --
+### -- Data Structures --
 ```{r message=FALSE, warning=FALSE}
 #Matricies and larger data sets with have complex structures that need to be navigated
 y <- c(1, 2, 3) # makes a list showing 1, 2, 3
@@ -107,7 +107,7 @@ class(y) # Numeric
 class(z) # Character
 ```
 
--- Data Frames --
+### -- Data Frames --
 ```{r message=FALSE, warning=FALSE}
 # A data frame is the way that most data sets will be displayed and show values of multiple variables at the same time
 my_dataframe <- data.frame(no = c(1,2,3), c("Tracey", "John", "Pete"), c(TRUE, FALSE, TRUE))
@@ -118,14 +118,14 @@ my_dataframe$no = as.factor(my_dataframe$no)
 str(my_dataframe)
 ```
 
--- Packages --
+### -- Packages --
 ```{r message=FALSE, warning=FALSE}
 # Need to be loaded before any functions can be used, and installed if not already on device using install.packages()
 library(tidyverse)
 library(ggplot2)
 ```
 
---- Exercise ---
+### --- Exercise ---
 How to load a .csv file and plot
 
 1. Read the .csv data set into R from the directory and the read.csv function.

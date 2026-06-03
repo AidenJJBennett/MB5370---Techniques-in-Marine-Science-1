@@ -4,11 +4,11 @@ author: "Aiden Bennett"
 date: "2026-05-28"
 ---
 
---- Workshop 04 - Developers Toolbox and AI ---
+### --- Workshop 04 - Developers Toolbox and AI ---
 
 Today's workshop focuses on AI integration into R and setting up GitHub Copilot and chattr.
 
--- GitHub Copilot --
+### -- GitHub Copilot --
 
 To properly install, go to Tools -> Global Options -> Assistant -> Change Use Code Assistant to GitHub Copilot. It will request your log in then connect automatically to GitHub. 
 
@@ -55,7 +55,7 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = species)) +
        color = "Species")
 ```
 
--- Installing and loading chattr --
+### -- Installing and loading chattr --
 
 install.packages("ellmer")
 install.packages("chattr")
@@ -76,7 +76,7 @@ ggplot(cars, aes(x = speed, y = dist)) +
   geom_point()
 ```
 
--- Conditional Logic in R --
+### -- Conditional Logic in R --
 
 An example of an if/else loop in basic R
 ```{r message=FALSE, warning=FALSE}
@@ -137,7 +137,7 @@ marine_stations <- tibble(
 
 The AI made the whole code in one section, which further simplified the provided examples.
 
--- Automation --
+### -- Automation --
 
 Base R can create for-loops
 ```{r message=FALSE, warning=FALSE}
@@ -204,7 +204,7 @@ mean_counts_purrr <- map_dbl(fish_counts, mean)
 mean_counts_purrr
 ```
 
--- Creating Custom Functions --
+### -- Creating Custom Functions --
 When creating custom functions, it requires a Name, Arguments/Inputs, and a Body/Logic
 
 Here is a provided example of a function

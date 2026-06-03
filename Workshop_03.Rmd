@@ -4,10 +4,10 @@ author: "Aiden Bennett"
 date: "2026-05-26"
 ---
 
---- Workshop 03 - Reproducible Research ---
+### --- Workshop 03 - Reproducible Research ---
 This workshop has minimal coding, instead it is a guide of the steps I took to install Git and some of the functionality I personally appreciate.
 
--- Git --
+### -- Git --
 Using a program like Git makes coding easier to streamline and keep track of any changes that have been done to your code. It is especially useful when using a public database or when developing open source programs.
 
 After setting up a GitHub account, the usethis package is required for connecting to R. Almost all of the work for installing Git is done in the console or terminal of R. Each OS is different, I personally use Windows so I will only share the steps necessary Windows devices.
@@ -34,7 +34,7 @@ These functions name your preferred Git editor and name your main branch for you
 Step 4 - Enjoy! Git is Now Ready to Go!
 
 
--- Connecting to GitHub --
+### -- Connecting to GitHub --
 GitHub also requires a Personal Access Token (PAT), which you can get directly from the GitHub website. The first time you try to use Git in R it should ask for a PAT which you can directly copy in. Make sure to save it otherwise you will need to generate a new one!
 
 There are several ways to create a new repository in R, but the easiest option is to input 'usethis::use_git() directly to the console in R. This will track your R project in a GitHub repository that can both upload and download information and files between it and your device. A new Git tab will also open in your project where you can choose to upload specific files that are saved within the specified project.

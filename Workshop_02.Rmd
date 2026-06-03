@@ -4,16 +4,16 @@ author: "Aiden Bennett"
 date: "2026-05-21"
 ---
 
---- Workshop 02 - Visualization ---
+### --- Workshop 02 - Visualization ---
 The second workshop introduces plotting using the ggplot2 package from tidyverse, going over types of plots and the different ways that they can be customized using embedded functions.
 
--- Load packages --
+### -- Load packages --
 ```{r message=FALSE, warning=FALSE}
 # Loads ggplot2 at same time
 library(tidyverse)
 ```
 
--- Plotting practice with ggplot2 --
+### -- Plotting practice with ggplot2 --
 ```{r message=FALSE, warning=FALSE}
 # ggplot2 is a great package for making more complex charts and removes redundancy that the base version of R plotting usually has
 ggplot(data = mpg) + 
@@ -40,7 +40,7 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy), color = "blue") # Manually makes all dots blue
 ```
 
--- Facet and panel plots --
+### -- Facet and panel plots --
 ```{r message=FALSE, warning=FALSE}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) + 
@@ -55,7 +55,7 @@ ggplot(data = mpg) +
 
 facet_wrap - nrow defines the number of rows, ncol defines the number of columns. Scales and space define limits on the layout and ensure that each panel is equal and proportional
 
--- Fitting simple lines --
+### -- Fitting simple lines --
 ```{r message=FALSE, warning=FALSE}
 # Using geom_point
 ggplot(data = mpg) + 
@@ -110,7 +110,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 # Filter sets the data into specified categories then only plots the specified subset
 ```
 
---- Exercise ---
+### --- Exercise ---
 1. For a line chart use geom_line, geom_boxplot for a boxplot, geom_histogram for a histogram, and geom_area for an area chart. These will be the simplest options and can be easily modified.
 
 2. These plots will show a dot chart with a best-fit line going through, evidenced by geom_point and geom_smooth. They will look the same as the mapping sections are the same in both plots, only placed in different locations within the code.
@@ -124,7 +124,7 @@ ggplot() +
   geom_smooth(data = mpg, mapping = aes(x = displ, y = hwy))
 ```
 
--- Plotting Statistics --
+### -- Plotting Statistics --
 ```{r message=FALSE, warning=FALSE}
 # Plots from diamonds data set in ggplot
 ggplot(data = diamonds) + 
@@ -161,7 +161,7 @@ ggplot(data = diamonds) +
 # stat_summary can visualize transformations of the data
 ```
 
--- Aesthetic adjustments --
+### -- Aesthetic adjustments --
 ```{r message=FALSE, warning=FALSE}
 # Color and fill
 ggplot(data = diamonds) + 
@@ -203,7 +203,7 @@ ggplot(data = mpg) +
 # Jitter is only usable in dot plots and adds randomization to the points to stop them from being combined in the plots
 ```
 
--- Layered grammar of plotting --
+### -- Layered grammar of plotting --
 ggplot(data = <DATA>) + 
   <GEOM_FUNCTION>(
      mapping = aes(<MAPPINGS>),
